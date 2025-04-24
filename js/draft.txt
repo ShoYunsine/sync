@@ -1,0 +1,135 @@
+if ('sync' in registration) {
+                let classes = await getUserClasses();
+                console.log("Classes", classes);
+            
+                function startTracking() {
+                    if (navigator.geolocation) {
+                        let lastUpdate = 0;  // Track the last time we triggered the function
+                        const throttleInterval = 10000;  // Set the throttle interval (in milliseconds, 10 seconds in this case)
+            
+                        const geoOptions = {
+                            maximumAge: 60000, // Cache position for 1 minute (60000 ms)
+                            timeout: 10000, // Timeout after 10 seconds if no position is found
+                            enableHighAccuracy: true // Use high accuracy if available
+                        };
+            
+                        navigator.geolocation.watchPosition(async (position) => {
+                            const currentTime = Date.now();  // Get the current time in milliseconds
+            
+                            // Only process the position if the throttle interval has passed
+                            if (currentTime - lastUpdate > throttleInterval) {
+                                lastUpdate = currentTime;  // Update the last update time
+            
+                                const location = {
+                                    latitude: position.coords.latitude,
+                                    longitude: position.coords.longitude
+                                };
+            
+                                console.log("Classes", classes);
+            
+                                // Ensure classes is defined and an array
+                                if (classes.length === 0 && classes != "None") {
+                                    // Refetch the classes if empty
+                                    classes = await getUserClasses();
+                                } else if (classes.length >= 1 && classes != "None") {
+                                    // Get today's date for storage key (formatted as YYYY-MM-DD)
+                                    const today = new Date().toISOString().split('T')[0];  // YYYY-MM-DD
+            
+                                    for (const cls of classes) {
+                                        // Generate a unique storage key for each class and date
+                                        const storageKey = `class-${cls.syntax}-${today}`;
+            
+                                        // Check if the class status is already in localStorage for today
+                                        let storedClass = JSON.parse(localStorage.getItem(storageKey));
+                                        let cstatus;
+                                        if (storedClass) {
+                                            console.log(`Status for class ${cls.syntax} on ${today}: ${storedClass.status}`);
+                                            cstatus = storedClass.status
+                                        } else {
+                                            cstatus = await getAttendance(cls.syntax, cls.timezone);
+                                            localStorage.setItem(storageKey, JSON.stringify({ syntax: cls.syntax, status: cstatus}));
+                                        }
+            
+                                        // Fetch the attendance status for the class if not stored in localStorage
+                                        
+                                        console.log("Class status:", cstatus);
+            
+                                        // If the class is within radius, process the attendance
+                                        const distance = calculateDistance(
+                                            location.latitude,
+                                            location.longitude,
+                                            cls.lat,
+                                            cls.long
+                                        );
+            
+                                        if (distance <= cls.rad) {
+                                        
+                                            if (cstatus === "Absent" || cstatus === "absent") {
+                                                const att = await checkAttendance(cls.syntax, cls.timezone);
+                                                localStorage.setItem(storageKey, JSON.stringify({ syntax: cls.syntax, status: att.status}));
+                                            }
+                                            //basicNotif(`${cls.name} inRadius`, "", 5000);
+                                        } else {
+                                            console.log("Toofar")
+                                            if (cstatus === "Absent" || cstatus === "absent") {
+                                                await markAbsent(cls.syntax);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }, (error) => {
+                            console.error("Geolocation error:", error);
+                        }, geoOptions);
+                    }
+                }
+            
+                startTracking();
+            }
+
+<div id="add-item-container">
+              <select id="item-select">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+              </select>
+              <input type="time" id="start">
+              <input type="time" id="end">
+              <button id="add-item-btn">+</button>
+              
+            </div>
+            <div id="item-list">
+              <!-- Existing list items -->
+            </div>
+
+// Get references to the DOM elements
+const select = document.getElementById('item-select');
+const startInput = document.getElementById('start');
+const endInput = document.getElementById('end');
+const addButton = document.getElementById('add-item-btn');
+const itemList = document.getElementById('item-list');
+
+// Add event listener for the "+" button click
+addButton.addEventListener('click', () => {
+    const selectedDay = select.value;
+    const startTime = startInput.value;
+    const endTime = endInput.value;
+
+    if (selectedDay && startTime && endTime) {
+        // Create a new div to hold the item
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('list-item');
+        itemDiv.textContent = `${selectedDay}: ${startTime} - ${endTime}`;
+
+        // Append the new item to the list
+        itemList.appendChild(itemDiv);
+
+        // Optionally, clear the inputs after adding
+        startInput.value = '';
+        endInput.value = '';
+    } else {
+        alert('Please select a day and specify both start and end times.');
+    }
+});

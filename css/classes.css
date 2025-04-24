@@ -1,0 +1,688 @@
+#reader {
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  display: none;
+  border: 2px solid #000;
+}
+
+#qr-result {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#classList,
+.classList {
+  display: flex;
+  max-height: 348px;
+  overflow-x: auto;
+  flex-direction: row;
+  margin: 0%;
+  margin-bottom: 12px;
+  padding: 18px 0%;
+  gap: 8px;
+}
+
+.classList div p {
+  margin-top: 10px;
+}
+
+#icon {
+  margin: 0;
+  color: var(--text-color-main);
+  font-size: 22px;
+}
+
+#classList li:first-child {
+  margin: 0 16px;
+}
+
+#attendanceChart {
+  width: 100%;
+  height: auto;
+  /* Let the height adjust based on the content */
+  max-height: 400px;
+  /* Set a maximum height if necessary */
+}
+
+#qrscanner-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+ 
+  margin: auto;
+  width: 70%;
+  height: 70%;
+  
+  z-index: 12;
+}
+
+#qrscanner-container video {
+  border: 1px solid var(--border-color);
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  /* Ensures the video fills the container */
+}
+
+
+#dashboard:hover {
+  background: #a1a0a07c;
+  color: white;
+}
+
+#accountDetails.show {
+  right: 0;
+}
+
+.main-container {
+  flex-grow: 1;
+  margin-left: 250px;
+  display: flex;
+  overflow-y: auto;
+  /* Enable scrolling */
+  overflow-x: hidden;
+  flex-direction: column;
+
+  align-items: stretch;
+}
+
+.form-group {
+  display: flex;
+  gap: 15px;
+  /* Space between input fields */
+  flex-wrap: wrap;
+}
+
+.form-step {
+  display: none;
+  /* Hide all steps initially */
+}
+
+.form-step.active {
+  display: block;
+  /* Show the active step */
+}
+
+.form-section,
+.list-section {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.form-section h3,
+.form-group h3 {
+  position: absolute;
+  text-align: left;
+  transform: translate(-10%, -20%);
+  font-size: 12px;
+  color: var(--text-color-second);
+  margin: 0;
+  padding: 10px;
+  z-index: 1;
+}
+
+.form-section h4 {
+  text-align: left;
+  font-size: 12px;
+  color: var(--text-color-second);
+  margin: 0;
+  margin-left: -10px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.form-section h2 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-x: hidden;
+  font-size: 16px;
+  margin: auto;
+  margin-bottom: 8px;
+  text-align: center;
+  max-width: 200px;
+  color: var(--text-color-main);
+}
+
+.form-section p {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-color-second);
+  margin: 0;
+  margin-top: -20px;
+  padding: 10px;
+  z-index: 1;
+}
+
+.form-section p a {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-color-second);
+  margin: 4px;
+}
+
+.form-section input,
+.form-group input,
+.form-section #school-name {
+  width: 95%;
+  padding: 12px 8px;
+  background-color: #00000000;
+  border: 1px none #ddd;
+  border-bottom: 2px solid #ddd;
+  border-radius: 0;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  height: 20px;
+  font-size: 12px;
+  color: var(--text-color-second);
+}
+
+.form-section input:focus-visible {
+  outline: none;
+  border: 1px none #ddd;
+  border-bottom: 2px solid #00a2ff;
+}
+
+.form-section div ul {
+  padding: 12px 8px;
+  background-color: #00000000;
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 4px;
+  margin-top: 0px;
+  font-size: 16px;
+}
+
+.form-section select {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.list-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Skeleton Loader CSS */
+.skeleton {
+  background-color: #00000000;
+  border-radius: 4px;
+  margin: 12px 0;
+  width: 100%;
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  /* Start hidden */
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.skeleton::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to right, #ba7eff0c, #00eeff52, #ffbb0086, #ff00b3, #c300ff);
+  animation: shimmer 1.5s infinite;
+
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+.list-item {
+  text-overflow: ellipsis;
+  background-color: #f9f9f900;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+  opacity: 0;
+  width: auto;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+#memberList {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#memberList .list-item {
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  height: auto;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 10px;
+  margin: 12px 0;
+  border-radius: 4px;
+  background-color: #f9f9f900;
+  opacity: 0;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+#memberList::-webkit-scrollbar,
+#classList::-webkit-scrollbar,
+.main-container::-webkit-scrollbar {
+  display: none;
+  /* Hide scrollbar for webkit-based browsers */
+}
+
+
+#memberList .list-item h3 {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-color-main);
+}
+
+.list-item h3 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-color-main);
+}
+
+.list-item.hidden,
+#memberList .list-item.hidden {
+  display: none;
+}
+
+
+#classPfp,
+.classPfp {
+  font-size: 20px;
+  position: relative;
+  border-radius: 100%;
+  padding: 15px;
+  border: 2px solid var(--text-color-main);
+  height: 25px;
+  width: 25px;
+  aspect-ratio: 1/1;
+  color: white;
+  text-shadow: 0 1px 2px var(--text-color-second);
+  font-weight: bold;
+  text-align: center;
+}
+
+.list-item p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-color-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-item div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+}
+
+.list-item #uid {
+  margin-top: 5px;
+  font-size: 9px;
+  color: var(--text-color-second);
+  display: none;
+}
+
+.userOptions {
+  display: none;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex-direction: row;
+  align-content: center;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+#postList {
+  width: 90%;
+  margin: auto;
+}
+
+.userOptions button,
+.list-item button,
+.post-button,
+#memberList .list-item .set-role,
+#memberList .list-item label {
+  flex-grow: 1;
+  display: flex;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--text-color-main);
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: center;
+  gap: 4px;
+  align-items: center;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.userOptions button {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.userOptions button:nth-of-type(1) {
+  opacity: 0;
+  animation-delay: 0s;
+}
+
+.userOptions button:nth-of-type(2) {
+  opacity: 0;
+  animation-delay: 0.1s;
+}
+
+.userOptions button:nth-of-type(3) {
+  opacity: 0;
+  animation-delay: 0.2s;
+}
+
+.userOptions button:nth-of-type(4) {
+  opacity: 0;
+  animation-delay: 0.3s;
+}
+
+.list-item>input[type=checkbox]:checked~.userOptions {
+  display: flex;
+}
+
+.userOptionsToggle {
+  display: none;
+}
+
+#i {
+  color: var(--text-color-main);
+}
+
+#attendance-List {
+  border: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Auto-fit columns */
+  gap: 8px; /* Adjust spacing */
+}
+
+
+#attendance-List .list-item.hidden {
+  display: none;
+}
+
+#attendance-List .list-item {
+  border: 1px solid var(--border-color);
+  display: flex;
+  padding: 4px;
+  height: auto;
+  flex-direction: row;
+  border-radius: 4px;
+  flex-wrap: wrap;
+}
+
+#attendance-List .list-item label {
+  display: flex;
+  justify-self: flex-end;
+  margin: 8px;
+  position: relative;
+  color: var(--text-color-main);
+}
+
+#attendance-List .list-item .option:checked + #memberoptions {
+  bottom: 0;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  z-index: 200;
+  padding: 0;
+  margin: 0;
+  border: none;
+  
+}
+
+#memberoptions button {
+  border: none;
+  width: 200px;
+}
+
+#attendance-List .list-item div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+#attendance-List .list-item img {
+  width: 30px;
+  border-radius: 100%;
+  margin: 10px;
+}
+
+#attendance-List h3 {
+  position: relative;
+  font-size: 12px;
+  transform: none;
+  width: 170px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+
+#attendance-List p {
+  width: auto;
+  text-align: left;
+}
+
+#attendance-List .list-item div.status-present img{
+  border: 2px dashed var(--present);
+  padding: 2px;
+}
+
+#attendance-List .list-item div.status-late img{
+  border: 2px dashed var(--late);
+  padding: 2px;
+}
+
+#attendance-List .list-item div.status-absent img{
+  border: 2px dashed var(--absent);
+  padding: 2px;
+}
+
+.userOptions button:hover,
+.list-item button:hover,
+.post-button:hover,
+#memberList .list-item .set-role:hover,
+#memberList .list-item label:hover {
+  background-color: rgb(4, 135, 243);
+  color: #ffffff;
+}
+
+.submit-btn {
+  border: 1px solid var(--border-color);
+  width: 100%;
+  background-color: rgba(128, 0, 0, 0);
+  color: var(--text-color-main);
+  border-radius: 4px;
+  height: 30px;
+  cursor: pointer;
+  margin: 10px 0;
+  font-size: 12px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: rgb(168, 168, 168);
+  color: white;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+#classaddForm,
+#classjoinForm {
+  display: none;
+}
+
+/* Show the classaddForm when addTab is checked */
+#addTab:checked~#formSwitch+.form-section #classaddForm {
+  display: block;
+}
+
+/* Show the classjoinForm when joinTab is checked */
+#joinTab:checked~#formSwitch+.form-section #classjoinForm {
+  display: block;
+}
+
+.switch-btn {
+  flex: 0 1 120px;
+  padding: 10px;
+  border: none;
+  color: var(--text-color-second);
+  border-radius: 0;
+  cursor: pointer;
+  text-align: center;
+  margin: 0 5px;
+  font-size: 12px;
+  border-bottom: 2px solid transparent;
+  box-shadow: inset 0 0 5px #e0e0e000;
+  transition: all 0.2s ease;
+}
+
+#formSwitch {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  border-radius: 0;
+  padding: 5px;
+  width: 99%;
+  margin-bottom: 5px;
+
+}
+
+#addTab:checked~#formSwitch label[for="addTab"],
+#joinTab:checked~#formSwitch label[for="joinTab"] {
+  color: #00a2ff;
+  border-bottom: 2px solid #00a2ff;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+@media (max-width: 785px) {
+  .main-container {
+    width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .form-group {
+    justify-content: center;
+  }
+
+  #attendance-List {
+    justify-content: flex-start;
+  }
+
+  #attendance-List .list-item {
+    flex-grow: 1;
+    justify-content: flex-start;
+  }
+
+  #postList {
+    width: 100%;
+  }
+}
+.info-container {
+  position: relative;
+  display: inline-block; /* Keeps it tied to the button's position */
+}
+
+.info-details {
+  position: relative;
+}
+
+.info-summary {
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: transparent;
+  color: var(--text-color-second);
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+.info-panel {
+  position: absolute;
+  top: 100%;
+  width: 200px;
+  margin-top: 4px;
+  margin-left: 12px;
+  backdrop-filter: blur(15px);
+  background-color: rgba(128, 128, 128, 0.103);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  color: var(--text-color-main);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 10;
+  font-size: 12px;
+  display: none; /* Hidden by default */
+}
+
+.info-panel p {
+  text-align: left;
+  margin-top: 0;
+  color: var(--text-color-main);
+}
+
+.info-details[open] .info-panel {
+  display: block; /* Shows the panel when the details element is open */
+}
+
+#className {
+  font-size: 24px;
+}
+
+#classInfo span {
+  color: var(--text-color-second);
+  padding: 5px;
+  font-size: 12px;
+}

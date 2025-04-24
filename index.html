@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/classes.css">
+  <link rel="stylesheet" type="text/css" href="css/class.css">
+  <link rel="stylesheet" type="text/css" href="css/notifs.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="shortcut icon" href="Images/ligt-logo.png">
+  <link rel="icon" type="image/png" href="Images/ligt-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js/dist/css/shepherd.css">
+
+  <title>Home</title>
+</head>
+
+<body>
+  <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle">
+  <label for="sidebar-toggle" class="backdrop"></label>
+  <div class="top-bar">
+    <div class="logo">
+      <img src="Images/ligt-logo.png" alt="Logo Light" class="logo-img light-logo">
+      <img src="Images/dark-logo.png" alt="Logo Dark" class="logo-img dark-logo">
+      <a>Sync</a>
+    </div>
+    <label for="sidebar-toggle" class="sidebar-button">☰</label>
+  </div>
+  <nav id="bottom-bar">
+    <a id="account"><img id="accountImg" src="Images/gear.png"></img></a>
+  </nav>
+  <aside class="sidebar">
+    <nav>
+      <ul>
+        <li>
+          <a>Change Appearance</a><i id="moon" class="icon icon-moon fas fa-moon"></i>
+          <div class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <label for="darkModeToggle" class="switch-slider"></label>
+          </div>
+        </li>
+
+        <li><a id="signout">Sign Out</a><i class="fas fa-sign-out-alt"></i></li>
+      </ul>
+    </nav>
+  </aside>
+  <div id="face-preview-container" class="hidden-overlay">
+    <div class="preview-modal">
+      <img id="preview-image" class="preview-image" alt="Preview" />
+      <p>Is this the correct picture?</p>
+      <div class="button-group">
+        <button id="confirm-button" class="button confirm">Confirm</button>
+        <button id="cancel-button" class="button cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-container">
+    
+  </div>
+  <div id="notifs">
+  </div>
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/script.js"></script>
+  <script type="module" src="js/tutorial.js"></script>
+  <script type="text/javascript">
+    on_index = true;
+  </script>
+</body>
+
+</html>

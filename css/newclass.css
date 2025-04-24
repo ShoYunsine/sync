@@ -1,0 +1,12 @@
+#classList {
+    display: flex;
+    list-style-type: none;
+}
+
+#classList .list-item {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    color: var(--text-color-main);
+    height: 100px;
+    border-radius: 4px;
+}

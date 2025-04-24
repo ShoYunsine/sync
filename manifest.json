@@ -1,0 +1,17 @@
+{
+    "lang": "en-us",
+    "name": "Sync",
+    "short_name": "Sync",
+    "description": "Musiciaans Connect!",
+    "start_url": "https://shoyunsine.github.io/dtr/index.html",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "orientation": "portrait",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "Images/ligt-logo.png",
+            "sizes": "512x512"
+        }
+    ]
+}

@@ -1,0 +1,291 @@
+#right::-webkit-scrollbar {
+  display: none;
+  /* Hide scrollbar for webkit-based browsers */
+}
+
+.loginMain {
+  display: flex;
+  height: 100vh;
+}
+
+#logincontainer, #signUpcontainer {
+  display: none;
+  position: relative;
+  background: var(--background-color);
+  border-radius: 10px;
+  padding: 0 50px;
+  width: 300px;
+  height: auto;
+  max-width: 70%;
+  z-index: 1000;
+}
+
+#left, #right {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  align-content: flex-start;
+  overflow: hidden;
+}
+
+#left {
+  position: relative;
+}
+
+#left #img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: linear-gradient(to top, rgba(46, 46, 46, 0.6), rgba(0, 0, 0, 0.6)),
+              url("https://blog.delivermytune.com/wp-content/uploads/2024/11/mini-musical-instruments.png"); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: hard-light;
+}
+
+
+#left div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 10;
+  background-blend-mode: color;
+}
+
+#right {
+  overflow-y: auto;
+  flex: 0 0 60%; /* Set width to 60% of the container */
+  max-width: 400px;
+  background: var(--bg-color);
+  z-index: 10;
+  box-shadow: 20px 0 25px rgba(186, 126, 255, 0.7);
+}
+
+.form-container{
+  display: flex;
+  position: relative;
+  width: auto;
+  max-width: 500px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  background-color: var(--background-color);
+  /*box-shadow: 10px 10px 25px rgba(0, 238, 255, 0.7), -10px -10px 25px rgba(186, 126, 255, 0.7);*/
+  transition: all 0.2s ease;
+}
+
+#formSwitch {
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 5px;
+  width: 200px; 
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+
+.logo {
+  display: flex;
+}
+
+.logo-image {
+  position: relative;
+  width: 50px; /* Adjust size as needed */
+  height: 50px; /* Adjust size as needed */
+  align-items: center;
+}
+
+.logo-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the container */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.logo-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(186, 126, 255, 0.7), rgba(0, 238, 255, 0.7)); /* Gradient colors */
+  mix-blend-mode: overlay; /* Blend gradient with the image */
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+.switch-btn {
+  flex: 0 1 120px;
+  padding: 8px 4px;
+  width: 30px;
+  border: none;
+  color: var(--text-color-second);
+  cursor: pointer;
+  text-align: center;
+  margin: 0 5px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+#loginTab:checked ~ #formSwitch label[for="loginTab"],
+#signUpTab:checked ~ #formSwitch label[for="signUpTab"] {
+  color: var(--text-color-main);
+  border-color: #4fa3fd;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+iframe {
+  display: block;
+  width: 90%;
+  margin: auto;
+  height: 100%;
+  outline: none;
+  border: none;
+}
+
+iframe::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+#loginTab:checked ~ #formSwitch ~ #logincontainer,
+#signUpTab:checked ~ #formSwitch ~ #signUpcontainer {
+  display: flex;
+}
+
+.form-container div{
+  align-self: center;
+  margin: 5px;
+  font-size: 14px;
+  color: var(--text-color-second);
+}
+
+#tos {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+#tos input {
+  display: flex;
+  width: auto;
+}
+
+.form-container a{
+  align-self: center;
+  margin: 5px;
+  font-size: 14px;
+  color: #00c3ff;
+}
+
+
+.logo a {
+  margin-left: 10px;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-size: 550%;
+  width: 100%;
+  font-weight: bold;
+  background-clip: text;
+  color: var(--text-color-main);
+}
+
+#warning {
+  display: none;
+  width: 100%;
+  align-items: center;
+}
+
+#warningtxt {
+  color: var(--text-color-second);
+  text-align: center;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensure the form takes the full width */
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0 0 20px;
+  text-align: left;
+}
+
+input {
+  background: transparent;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 5px;
+  color: var(--text-color-main);
+  border-color: var(--text-color-second);
+  border-width: 2px;
+  border-style: solid;
+  width: 100%; /* Ensure inputs take the full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.form-container button {
+  align-self: center;
+  border-radius: 50px;
+  width: 90%;
+  margin: 2px;
+  border: none;
+  padding: 9px;
+  background: #91908f;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#signUpWithGoogle, #loginWithGoogle  {
+  background-color: rgb(85, 189, 253);
+}
+
+#signUpWithGoogle:hover {
+  background-color: rgb(36, 160, 238);
+}
+
+#loginWithGoogle:hover {
+  background-color: rgb(36, 160, 238);
+}
+
+
+.form-container button:hover {
+  background: grey;
+}
+
+.form-container button img {
+  transform: translate(-50%, 10%);
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  background-color: white;
+}
+
+@media (max-width: 600px) {
+  #left {
+    display: none;
+  }
+
+  #right {
+    flex: 1;
+    height: 100vh;
+    max-width: 100%;
+    box-shadow: none;
+  }
+}
