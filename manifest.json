@@ -3,7 +3,7 @@
     "name": "Sync",
     "short_name": "Sync",
     "description": "Musiciaans Connect!",
-    "start_url": "https://shoyunsine.github.io/dtr/index.html",
+    "start_url": "https://shoyunsine.github.io/sync/index.html",
     "background_color": "#ffffff",
     "theme_color": "#ffffff",
     "orientation": "portrait",
