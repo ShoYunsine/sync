@@ -25,12 +25,18 @@
   --text-color-second: rgb(145, 145, 145);
   --shadow: rgba(107, 107, 107, 0.692);
 }
-
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: var(--background-color);
   transition: all 0.5;
+  height: 100%;
 }
 
 body::-webkit-scrollbar {
@@ -125,7 +131,7 @@ body::-webkit-scrollbar {
   justify-content: flex-end;
   align-items: center;
   background-color: var(--background-color);
-  padding: 10px 0px 10px;
+  padding: 22px 0px 10px;
   position: sticky;
   top: 0;
   width: 100%;
@@ -137,7 +143,7 @@ body::-webkit-scrollbar {
   position: absolute;
   left: 0;
   display: flex;
-  margin-left: 8px;
+  margin-left: 12px;
   align-items: center;
 }
 
@@ -239,9 +245,9 @@ body.dark-mode .dark-logo {
 }
 
 #accountImg {
-  width: 30px;
+  width: 35px;
   border-radius: 100%;
-  border-color: white;
+  border-color: var(--text-color-main);
   border-width: 2px;
   border-style: solid;
 }
@@ -279,47 +285,17 @@ a {
   opacity: 1;
 }
 
-#qrcode {
-  padding: 4px;
-  border: 1px solid var(--border-color);
-  margin: 8px auto;
-  border-radius: 4px;
-  display: flex;
-}
-
-#downloadQR, #uploadFaceData, #imageUpload {
-  border: 1px solid var(--border-color);
-  background-color: transparent;
-  color: var(--text-color-main);
-  width: 100%;
-  border-radius: 4px;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
-  transition: background-color 0.3s;
-}
-
-#imageUpload {
-  width: 89%;
-  margin: auto;
-}
-
-#downloadQR:hover {
-  background-color: rgb(4, 135, 243);
-  color: #ffffff;
-}
-
-
 .sidebar-button {
   display: none;
   font-size: 1.5rem;
   background: transparent;
-  border: none;
+  border: solid 1px var(--text-color-main);
+  border-radius: 4px;
   color: var(--text-color-main);
   cursor: pointer;
-  padding: 10px;
-  margin-right: 4px;
+  padding: 3px 5px;
+  margin-right: 20px;
+  margin-top: 2px;
 }
 
 .sidebar {
@@ -448,6 +424,117 @@ z-index: 100;
 #signOutButton:hover {
   background: #a1a0a07c;
   color: white;
+}
+
+.video-card {
+  position: relative;
+  width: 98%;
+  aspect-ratio: 9 / 16;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  margin: 16px auto;
+  height: 100%;
+}
+
+.video-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  background-color: #96969646;
+  padding: 10px 8px;
+  backdrop-filter: blur(5px);
+  border-radius: 4px;
+  z-index: 1;
+  border: 0.5px solid rgba(255, 255, 255, 0.144);
+}
+
+.overlay .pfp {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid white;
+}
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 50px); /* adjust for bottom bar if needed */
+  object-fit: cover;
+  z-index: 0; /* adjust as needed */
+}
+
+.overlay .info h2,
+.overlay .info p {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.role {
+  font-size: 16px;
+  font-weight: bold;
+  color: #006eff; /* Example color for the role */
+}
+
+.action-buttons {
+  display: flex;
+  position: fixed;
+  margin-top: 0;
+  bottom: 11%;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
+}
+
+button {
+  background-color: #006eff;
+  border: none;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1/1;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 50%; /* Makes the button circular */
+color: white;
+border: 1px solid white;
+}
+
+button:hover {
+  background-color: #0664df;
+}
+
+#bottom-bar {
+  display: flex;
+  position: fixed;
+  flex-direction: row;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 0;
+  gap: 10px;
+  z-index: 10;
+  justify-content: space-around;
+  background-color: var(--background-color);
+  border-top: 1px solid var(--border-color);
+  flex-wrap: nowrap;
 }
 
 @media (max-width: 785px) {

@@ -196,7 +196,7 @@ iframe::-webkit-scrollbar {
   font-family: "Montserrat", sans-serif;
   font-size: 550%;
   width: 100%;
-  font-weight: bold;
+  font-weight: bold ;
   background-clip: text;
   color: var(--text-color-main);
 }

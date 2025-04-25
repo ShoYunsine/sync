@@ -32,9 +32,6 @@
     </div>
     <label for="sidebar-toggle" class="sidebar-button">☰</label>
   </div>
-  <nav id="bottom-bar">
-    <a id="account"><img id="accountImg" src="Images/gear.png"></img></a>
-  </nav>
   <aside class="sidebar">
     <nav>
       <ul>
@@ -50,20 +47,44 @@
       </ul>
     </nav>
   </aside>
-  <div id="face-preview-container" class="hidden-overlay">
-    <div class="preview-modal">
-      <img id="preview-image" class="preview-image" alt="Preview" />
-      <p>Is this the correct picture?</p>
-      <div class="button-group">
-        <button id="confirm-button" class="button confirm">Confirm</button>
-        <button id="cancel-button" class="button cancel">Cancel</button>
-      </div>
-    </div>
-  </div>
+  
 
   <div class="main-container">
+    <div class="video-card">
+      <div class="video-wrapper">
+        <video autoplay muted loop playsinline class="bg-video">
+          <source src="Images/Download.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="action-buttons">
+          <button class="accept-btn">
+            <i class="fas fa-check"></i> <!-- Font Awesome check icon -->
+          </button>
+          <button class="pass-btn">
+            <i class="fas fa-times"></i> <!-- Font Awesome X icon -->
+          </button>
+        </div>
+        
+      </div>
+      <div class="overlay">
+        <img src="https://bookingagentinfo.com/wp-content/uploads/2024/02/ab6761610000e5eb3aee9df46be64d405965eb53.jpg" alt="Profile Picture" class="pfp">
+        <div class="info">
+          <h2>Ely Buendia</h2>
+          <p>Naga, Camarines Sur</p>
+          <p class="role">Singer</p> <!-- Added Role -->
+        </div>
+        
+      </div>
+     
+
+    </div>
+    
     
   </div>
+
+  <nav id="bottom-bar">
+    <a id="account"><img id="accountImg" src="Images/gear.png"></img></a>
+  </nav>  
   <div id="notifs">
   </div>
   <script type="module" src="js/firebase.js"></script>
